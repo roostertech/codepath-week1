@@ -7,5 +7,5 @@ target 'Flicky' do
 
   # Pods for Flicky
   pod "AFNetworking"
-  pod 'MBProgressHUD'
+  pod "MBProgressHUD"
 end

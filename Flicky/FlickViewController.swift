@@ -10,15 +10,22 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class FlickViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+
+
+class FlickViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var networkErrorView: UIView!
+    
     
     var movies: [[String:Any]] =  [[String:Any]] ()
     let IMG_BASE_URL = "http://image.tmdb.org/t/p/w500"
     var endpoint: String!
+    var layoutChangeControl: UISegmentedControl!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         networkErrorView.isHidden = true
@@ -26,14 +33,45 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.dataSource = self
         tableView.delegate = self
         
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        // pull to refresh
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         
+        // segment control
+        layoutChangeControl = UISegmentedControl(items: [#imageLiteral(resourceName: "rows"), #imageLiteral(resourceName: "grid")])
+        layoutChangeControl.sizeToFit()
+        layoutChangeControl.tintColor = UIColor(red:0.47, green:0.70, blue:1, alpha: 1)
+        layoutChangeControl.selectedSegmentIndex = 0;
+        layoutChangeControl.customizeAppearance(for: 35)
+        layoutChangeControl.addTarget(self, action: #selector(layoutChangeAction(_:)), for: UIControlEvents.valueChanged)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: layoutChangeControl)
         refreshData(refreshControl: nil, showProgress: true)
+        selectLayout(layout : 0) // default to list
     }
     
+
+    func selectLayout(layout:Int) {
+        if layout == 0 {
+            tableView.isHidden = false
+            collectionView.isHidden = true
+        } else {
+            tableView.isHidden = true
+            collectionView.isHidden = false
+        }
+    }
     
+    func layoutChangeAction(_ layoutChangeControl: UISegmentedControl) {
+        print("Layout selected \(layoutChangeControl.selectedSegmentIndex)")
+        selectLayout(layout: layoutChangeControl.selectedSegmentIndex)
+        
+    }
+        
+
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         refreshData(refreshControl: refreshControl, showProgress: false)
     }
@@ -72,6 +110,8 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
                 let dictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 self.movies = dictionary["results"] as! [[String:Any]]
                 self.tableView.reloadData()
+                self.collectionView.reloadData()
+                
                 print("Finished loading \(self.endpoint!)")
             }
             refreshControl?.endRefreshing()
@@ -105,14 +145,37 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
 
-    // MARK: - Navigation
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let movie = movies[indexPath.row]
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionCell", for: indexPath) as! MovieCollectionCell
+        
+        var posterURL: URL!
+        if let posterPath = movie["poster_path"] as? String {
+            posterURL = URL(string: IMG_BASE_URL + posterPath)
+            cell.poster.setImageWith(posterURL)
+        } else {
+            cell.poster.image = nil
+        }
+        
+        return cell
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)
+        
+        var indexPath : IndexPath!
+        if let cell = sender as? UITableViewCell {
+            indexPath = tableView.indexPath(for: cell)
+        } else {
+            if let cell = sender as? UICollectionViewCell {
+                indexPath = collectionView.indexPath(for: cell)
+            }
+        }
+        
         let movie = movies[indexPath!.row]
         let detailVC = segue.destination as! DetailViewController
         detailVC.movie = movie
