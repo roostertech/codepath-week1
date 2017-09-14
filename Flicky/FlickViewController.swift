@@ -13,7 +13,7 @@ import MBProgressHUD
 
 
 
-class FlickViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class FlickViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -21,10 +21,11 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     var movies: [[String:Any]] =  [[String:Any]] ()
+    var filteredMovies: [[String:Any]] =  [[String:Any]] ()
+    var searchString : String = ""
+
     let IMG_BASE_URL = "http://image.tmdb.org/t/p/w500"
     var endpoint: String!
-    var layoutChangeControl: UISegmentedControl!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.insertSubview(refreshControl, at: 0)
         
         // segment control
-        layoutChangeControl = UISegmentedControl(items: [#imageLiteral(resourceName: "rows"), #imageLiteral(resourceName: "grid")])
+        let layoutChangeControl = UISegmentedControl(items: [#imageLiteral(resourceName: "rows"), #imageLiteral(resourceName: "grid")])
         layoutChangeControl.sizeToFit()
         layoutChangeControl.tintColor = UIColor(red:0.47, green:0.70, blue:1, alpha: 1)
         layoutChangeControl.selectedSegmentIndex = 0;
@@ -50,10 +51,44 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
         layoutChangeControl.addTarget(self, action: #selector(layoutChangeAction(_:)), for: UIControlEvents.valueChanged)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: layoutChangeControl)
+        
+        // search bar
+        let searchBar = UISearchBar()
+        searchBar.delegate = self
+        
+        self.navigationItem.titleView = searchBar
+        
+        
+        
         refreshData(refreshControl: nil, showProgress: true)
         selectLayout(layout : 0) // default to list
     }
+
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("Search \(searchText)")
+        searchString = searchText;
+        
+        filterMovie()
+        tableView.reloadData()
+        collectionView.reloadData()
+    }
     
+    func filterMovie() {
+        filteredMovies.removeAll()
+        if searchString == "" {
+            filteredMovies.append(contentsOf: movies)
+            return
+        }
+        
+        // slow force filtering - bleh
+        for movie in movies {
+            let movieTittle = movie["original_title"] as? String
+            if movieTittle!.contains(searchString) {
+                filteredMovies.append(movie)
+            }
+        }
+    }
 
     func selectLayout(layout:Int) {
         if layout == 0 {
@@ -109,6 +144,7 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
             if let data = dataOrNil {
                 let dictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 self.movies = dictionary["results"] as! [[String:Any]]
+                self.filterMovie()
                 self.tableView.reloadData()
                 self.collectionView.reloadData()
                 
@@ -124,12 +160,12 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return filteredMovies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        let movie = movies[indexPath.row]
+        let movie = filteredMovies[indexPath.row]
         cell.movieTitle.text = movie["original_title"] as? String
         cell.movieDes.text = movie["overview"] as? String
         
@@ -146,11 +182,11 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return filteredMovies.count
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let movie = movies[indexPath.row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let movie = filteredMovies[indexPath.row]
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionCell", for: indexPath) as! MovieCollectionCell
         
@@ -176,7 +212,7 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         }
         
-        let movie = movies[indexPath!.row]
+        let movie = filteredMovies[indexPath!.row]
         let detailVC = segue.destination as! DetailViewController
         detailVC.movie = movie
         
