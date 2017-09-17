@@ -27,18 +27,10 @@ class DetailViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         print(movie)
-        
-        if let posterPath = movie["poster_path"] as? String {
-            let posterURL:URL! = URL(string: IMG_BASE_URL + posterPath)
-            poster.setImageWith(posterURL)
-        } else {
-            poster.image = nil
-        }
-        
+        poster.loadPosterImageDual(movie: movie)
 
         movieOverview.text = movie["overview"] as? String
         movieTitle.text = movie["original_title"] as? String
-
     }
 
     override func didReceiveMemoryWarning() {

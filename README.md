@@ -2,7 +2,7 @@
 
 Flicky is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: 6 hours spent in total
+Time spent: 12 hours spent in total
 
 ## User Stories
 
@@ -19,26 +19,37 @@ The following **optional** features are implemented:
 - [x] Add a tab bar for **Now Playing** and **Top Rated** movies.
 - [x] Implement segmented control to switch between list view and grid view.
 - [x] Add a search bar.
-- [ ] All images fade in.
-- [ ] For the large poster, load the low-res image first, switch to high-res when complete.
-- [ ] Customize the highlight and selection effect of the cell.
-- [ ] Customize the navigation bar.
-
-The following **additional** features are implemented:
-
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] All images fade in.
+- [x] For the large poster, load the low-res image first, switch to high-res when complete.
+- [x] Customize the highlight and selection effect of the cell.
+- [x] Customize the navigation bar.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+**General functionalities :**
+
+![](gifs/flick-overview.gif)
+
+**Network Error / Refresh :**
+
+![](gifs/flick-nw-error.gif)
+
+**Loading :**
+
+![](gifs/flick-loading.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Probably at least 1/3 of the time was spent on pixel pushing and it still doesn't quite look right. Hopefull this will get faster once I get used to all the knobs.
+
+## Attributions
+grid view by Rohith M S from the Noun Project
+bullet list by Prasad from the Noun Project
+movie ticket by iconsmind.com from the Noun Project
 
 ## License
 

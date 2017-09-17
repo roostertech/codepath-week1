@@ -24,7 +24,6 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
     var filteredMovies: [[String:Any]] =  [[String:Any]] ()
     var searchString : String = ""
 
-    let IMG_BASE_URL = "http://image.tmdb.org/t/p/w500"
     var endpoint: String!
     
     override func viewDidLoad() {
@@ -42,9 +41,14 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         
+        let refreshControl2 = UIRefreshControl()
+        refreshControl2.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        collectionView.insertSubview(refreshControl2, at: 0)
+
         // segment control
         let layoutChangeControl = UISegmentedControl(items: [#imageLiteral(resourceName: "rows"), #imageLiteral(resourceName: "grid")])
         layoutChangeControl.sizeToFit()
+        layoutChangeControl.backgroundColor = UIColor(red: 228/255, green: 246/255, blue: 250/255, alpha: 1)
         layoutChangeControl.tintColor = UIColor(red:0.47, green:0.70, blue:1, alpha: 1)
         layoutChangeControl.selectedSegmentIndex = 0;
         layoutChangeControl.customizeAppearance(for: 35)
@@ -162,25 +166,28 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredMovies.count
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = filteredMovies[indexPath.row]
         cell.movieTitle.text = movie["original_title"] as? String
         cell.movieDes.text = movie["overview"] as? String
+        cell.poster.loadPosterImage(movie: movie)
         
-        var posterURL: URL!
-        if let posterPath = movie["poster_path"] as? String {
-            posterURL = URL(string: IMG_BASE_URL + posterPath)
-            cell.poster.setImageWith(posterURL)
-        } else {
-            cell.poster.image = nil
-        }
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red: 255/255, green: 242/255, blue: 236/255, alpha: 1)
+        cell.selectedBackgroundView = backgroundView
         
-
         return cell
     }
 
+    // get rid of selection gray
+    func tableView(_ tableView: UITableView, didSelectRowAt: IndexPath) {
+        print("Select \(didSelectRowAt.row)")
+        tableView.deselectRow(at: didSelectRowAt, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredMovies.count
     }
@@ -189,15 +196,7 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
         let movie = filteredMovies[indexPath.row]
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionCell", for: indexPath) as! MovieCollectionCell
-        
-        var posterURL: URL!
-        if let posterPath = movie["poster_path"] as? String {
-            posterURL = URL(string: IMG_BASE_URL + posterPath)
-            cell.poster.setImageWith(posterURL)
-        } else {
-            cell.poster.image = nil
-        }
-        
+        cell.poster.loadPosterImage(movie: movie)
         return cell
     }
     

@@ -18,6 +18,7 @@
 		76D9924C1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9924B1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift */; };
 		76EF27451F6903E7004FC6B6 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF27441F6903E7004FC6B6 /* MovieCell.swift */; };
 		76EF27471F69992D004FC6B6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF27461F69992D004FC6B6 /* DetailViewController.swift */; };
+		76FAA2A81F6E71EA00C2FFC1 /* UIImageView+loadPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FAA2A71F6E71EA00C2FFC1 /* UIImageView+loadPoster.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		76D9924B1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+customizeAppearance.swift"; sourceTree = "<group>"; };
 		76EF27441F6903E7004FC6B6 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		76EF27461F69992D004FC6B6 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		76FAA2A71F6E71EA00C2FFC1 /* UIImageView+loadPoster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+loadPoster.swift"; sourceTree = "<group>"; };
 		7CD563FD43C4FA4023FE55B3 /* Pods-Flicky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicky.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flicky/Pods-Flicky.release.xcconfig"; sourceTree = "<group>"; };
 		C55AC679582A79902DF85B16 /* Pods_Flicky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -107,6 +109,7 @@
 			children = (
 				76D992491F6A54430044B437 /* UIImage+colored.swift */,
 				76D9924B1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift */,
+				76FAA2A71F6E71EA00C2FFC1 /* UIImageView+loadPoster.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				7621FC301F66588A0059ABDF /* FlickViewController.swift in Sources */,
 				76D992471F6A4F030044B437 /* MovieCollectionCell.swift in Sources */,
 				76D9924C1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift in Sources */,
+				76FAA2A81F6E71EA00C2FFC1 /* UIImageView+loadPoster.swift in Sources */,
 				7621FC1E1F6657220059ABDF /* AppDelegate.swift in Sources */,
 				76EF27451F6903E7004FC6B6 /* MovieCell.swift in Sources */,
 				76D9924A1F6A54430044B437 /* UIImage+colored.swift in Sources */,
