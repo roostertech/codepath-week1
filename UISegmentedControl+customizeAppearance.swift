@@ -20,7 +20,7 @@ extension UISegmentedControl {
         
         for  borderview in subviews {
             let upperBorder: CALayer = CALayer()
-            upperBorder.backgroundColor = UIColor.init(red: 215/255.0, green: 0.0, blue: 30/255.0, alpha: 1.0).cgColor
+            upperBorder.backgroundColor = UIColor.init(red: 215/255.0, green: 0.0, blue: 30/255.0, alpha: 0.5).cgColor
             upperBorder.frame = CGRect(x: 0, y: borderview.frame.size.height-1, width: borderview.frame.size.width, height: 1)
             borderview.layer.addSublayer(upperBorder)
         }
