@@ -47,9 +47,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 Probably at least 1/3 of the time was spent on pixel pushing and it still doesn't quite look right. Hopefull this will get faster once I get used to all the knobs.
 
 ## Attributions
-grid view by Rohith M S from the Noun Project
-bullet list by Prasad from the Noun Project
-movie ticket by iconsmind.com from the Noun Project
+- grid view by Rohith M S from the Noun Project
+- bullet list by Prasad from the Noun Project
+- movie ticket by iconsmind.com from the Noun Project
 
 ## License
 
