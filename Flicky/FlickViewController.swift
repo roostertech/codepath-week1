@@ -25,9 +25,10 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
     var searchString : String = ""
 
     var endpoint: String!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         networkErrorView.isHidden = true
         
         tableView.dataSource = self
@@ -201,7 +202,6 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         var indexPath : IndexPath!
         if let cell = sender as? UITableViewCell {
             indexPath = tableView.indexPath(for: cell)
@@ -214,8 +214,7 @@ class FlickViewController: UIViewController, UITableViewDataSource, UITableViewD
         let movie = filteredMovies[indexPath!.row]
         let detailVC = segue.destination as! DetailViewController
         detailVC.movie = movie
+        detailVC.hidesBottomBarWhenPushed = true
         
     }
-
-
 }
