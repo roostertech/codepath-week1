@@ -17,12 +17,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var releaseDate: UILabel!
     
     var movie : [String:Any]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        infoView.setRadius(radius: 10)
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
         
         // Do any additional setup after loading the view.
@@ -31,6 +33,7 @@ class DetailViewController: UIViewController {
 
         movieOverview.text = movie["overview"] as? String
         movieTitle.text = movie["original_title"] as? String
+        releaseDate.text = "Release Date: " + (movie["release_date"] as! String)
     }
 
     override func didReceiveMemoryWarning() {

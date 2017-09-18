@@ -13,6 +13,7 @@
 		7621FC251F6657220059ABDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7621FC241F6657220059ABDF /* Assets.xcassets */; };
 		7621FC281F6657220059ABDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7621FC261F6657220059ABDF /* LaunchScreen.storyboard */; };
 		7621FC301F66588A0059ABDF /* FlickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7621FC2F1F66588A0059ABDF /* FlickViewController.swift */; };
+		76A5539D1F6F76CB001755EF /* UIView+setRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A5539C1F6F76CB001755EF /* UIView+setRadius.swift */; };
 		76D992471F6A4F030044B437 /* MovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D992461F6A4F030044B437 /* MovieCollectionCell.swift */; };
 		76D9924A1F6A54430044B437 /* UIImage+colored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D992491F6A54430044B437 /* UIImage+colored.swift */; };
 		76D9924C1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9924B1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift */; };
@@ -30,6 +31,7 @@
 		7621FC271F6657220059ABDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7621FC291F6657220059ABDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7621FC2F1F66588A0059ABDF /* FlickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickViewController.swift; sourceTree = "<group>"; };
+		76A5539C1F6F76CB001755EF /* UIView+setRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+setRadius.swift"; sourceTree = "<group>"; };
 		76D992461F6A4F030044B437 /* MovieCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionCell.swift; sourceTree = "<group>"; };
 		76D992491F6A54430044B437 /* UIImage+colored.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+colored.swift"; sourceTree = "<group>"; };
 		76D9924B1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+customizeAppearance.swift"; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				76D992491F6A54430044B437 /* UIImage+colored.swift */,
 				76D9924B1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift */,
 				76FAA2A71F6E71EA00C2FFC1 /* UIImageView+loadPoster.swift */,
+				76A5539C1F6F76CB001755EF /* UIView+setRadius.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7621FC301F66588A0059ABDF /* FlickViewController.swift in Sources */,
+				76A5539D1F6F76CB001755EF /* UIView+setRadius.swift in Sources */,
 				76D992471F6A4F030044B437 /* MovieCollectionCell.swift in Sources */,
 				76D9924C1F6A54930044B437 /* UISegmentedControl+customizeAppearance.swift in Sources */,
 				76FAA2A81F6E71EA00C2FFC1 /* UIImageView+loadPoster.swift in Sources */,

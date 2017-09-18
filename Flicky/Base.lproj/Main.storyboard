@@ -126,23 +126,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="4oN-MA-SYE">
+                                <rect key="frame" x="0.0" y="55" width="329" height="510"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="oFc-XN-dQK">
                                 <rect key="frame" x="0.0" y="63" width="375" height="604"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" id="J5T-1W-fFk">
-                                        <rect key="frame" x="0.0" y="443" width="314" height="316"/>
+                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" id="J5T-1W-fFk">
+                                        <rect key="frame" x="20" y="470" width="285" height="316"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jag-gy-wfD">
-                                                <rect key="frame" x="8" y="8" width="306" height="27"/>
+                                                <rect key="frame" x="8" y="8" width="269" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="suo-iX-aqQ">
+                                                <rect key="frame" x="8" y="35" width="269" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Overview" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bxN-IY-YpG">
-                                                <rect key="frame" x="8" y="30" width="302" height="216"/>
+                                                <rect key="frame" x="8" y="40" width="269" height="216"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -151,10 +162,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="4oN-MA-SYE">
-                                        <rect key="frame" x="0.0" y="-64" width="329" height="510"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -166,6 +173,7 @@
                         <outlet property="movieOverview" destination="bxN-IY-YpG" id="pVp-9K-zIf"/>
                         <outlet property="movieTitle" destination="jag-gy-wfD" id="8QM-eo-gPL"/>
                         <outlet property="poster" destination="4oN-MA-SYE" id="hu8-1s-mix"/>
+                        <outlet property="releaseDate" destination="suo-iX-aqQ" id="Bo9-yD-cmd"/>
                         <outlet property="scrollView" destination="oFc-XN-dQK" id="eor-U3-srl"/>
                     </connections>
                 </viewController>

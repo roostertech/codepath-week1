@@ -24,6 +24,9 @@ The following **optional** features are implemented:
 - [x] Customize the highlight and selection effect of the cell.
 - [x] Customize the navigation bar.
 
+Extra
+- [x] Detail view: stationary poster
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
